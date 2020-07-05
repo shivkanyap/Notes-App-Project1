@@ -5,7 +5,16 @@ import Register from './components/users/Register'
 import Login from './components/users/Login'
 import Account from './components/users/Account'
 import axios from 'axios'
-import AddNote from './notes/AddNote'
+import  CategoryList from './components/catagory/categoryList'
+import AddCategory from './components/catagory/addCategory'
+import EditCategory from './components/catagory/editCategory'
+import DeleteCategory from './components/catagory/deleteCategory'
+
+import ListNotes from './components/notes/List'
+import AddNote from './components/notes/Add'
+import  NotesDelete from './components/notes/Delete'
+import EditNote from './components/notes/Edit'
+// import AddNote from './notes/AddNote'
 
 
 class App extends React.Component{
@@ -36,7 +45,7 @@ class App extends React.Component{
   {
     return(
       <BrowserRouter>
-    
+      <h1>App</h1>
       <div className="container">
       
         <nav className="navbar navbar-default">
@@ -49,6 +58,8 @@ class App extends React.Component{
               { this.state.isAuthenticated ? (
                 <React.Fragment>
                 <li><Link to="/users/logout" className="nav-item nav-link" >Logout </Link></li>
+                <li><Link to="/category/viewall" className="nav-item nav-link" >Category </Link></li>
+                <li><Link to="/notes/view">Notes</Link></li>
               </React.Fragment>
               ) : (
                 <React.Fragment>
@@ -87,13 +98,22 @@ class App extends React.Component{
                   localStorage.removeItem('token')
                 })
             }} />
+              {/* <Route path="/notes/add" component={AddNote} exact={true} /> */}
+              <Route path="/category/viewall" component={CategoryList}  />
+              <Route path="/category/add" component={AddCategory}/>
+              <Route path="/category/edit/:id" component={EditCategory}/>
+              <Route path="/category/delete/:id" component={DeleteCategory}/>
+              <Route path="/notes/view" component={ListNotes} exact/>
+              <Route path="/notes/add" component={AddNote} exact/>
+              <Route path="/notes/delete/:id" component={ NotesDelete}/>
+              <Route path='/notes/edit/:id' component={EditNote}/>
            
 
          
         </Switch>
 
       </div>   
-      <AddNote/>
+      {/* <AddNote/> */}
       </BrowserRouter>
     
       
